@@ -8,11 +8,11 @@ public abstract class Car implements Movable {
     private Position position;
 
     public Car (int nrDoors, double enginePower, double currentSpeed, Color color, String modelName) {
-        this.nrDoors = nrDoors
-        this.enginePower = enginePower
-        this.currentSpeed = currentSpeed
-        this.color = color
-        this.modelName = modelName
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.currentSpeed = currentSpeed;
+        this.color = color;
+        this.modelName = modelName;
         this.position = new Position(0, 0);
         stopEngine();
     }
@@ -56,14 +56,6 @@ public abstract class Car implements Movable {
 
     public void stopEngine() {
 	    currentSpeed = 0;
-    }
-
-    public void setTurboOn() {
-	    turboOn = true;
-    }
-
-    public void setTurboOff() {
-	    turboOn = false;
     }
 
     public void move() {

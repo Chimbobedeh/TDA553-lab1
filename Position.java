@@ -11,7 +11,7 @@ public class Position {
 // x represents movement in x-plane and y represents movement in the y-plane
     private int x, y;
     private int direction;
-    private int[] directions = {0,1,2,3};
+    private int[] directions = {0, 1, 2, 3};
 
     Position(int x, int y) {
         this.x = x;
