@@ -7,6 +7,8 @@ enum Direction {
 }
 */
 
+import static java.lang.System.out;
+
 public class Position {
 // x represents movement in x-plane and y represents movement in the y-plane
     private int x, y;
@@ -55,17 +57,17 @@ public class Position {
         // Should we %= 4 here?
         switch (this.direction) {
             case 0:
-                // UP
-                y += factor;
+                this.y += factor;
+                break;
             case 1:
-                // RIGHT
                 x += factor;
+                break;
             case 2:
-                // DOWN
                 y -= factor;
+                break;
             case 3:
-                // LEFT
                 x -= factor;
+                break;
         }
         /*
         if (y < 0){

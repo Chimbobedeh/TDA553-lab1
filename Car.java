@@ -16,7 +16,7 @@ public abstract class Car implements Movable {
         this.color = color;
         this.modelName = modelName;
         this.position = new Position(0, 0);
-        stopEngine();
+        //stopEngine();
     }
 
     abstract public double speedFactor();
@@ -53,7 +53,7 @@ public abstract class Car implements Movable {
     }
 
     public void startEngine() {
-	    currentSpeed = 0.1;
+	    currentSpeed = 1;
     }
 
     public void stopEngine() {
