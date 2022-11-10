@@ -65,14 +65,16 @@ public abstract class Car implements Movable {
     }
 
     public void turnLeft() {
-        this.position.direction -= 1;
-        this.position.direction %= 4;
+        this.position.decrementDirection();
+        //this.position.direction -= 1;
+        //this.position.direction %= 4;
         //.position.setXNegagtive();
     }
 
     public void turnRight() {
-        this.position.direction -= 1;
-        this.position.direction %= 4;
+        this.position.incrementDirection();
+        //this.position.direction += 1;
+        //this.position.direction %= 4;
         //this.position.setXPositive();
     }
     

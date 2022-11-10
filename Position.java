@@ -35,6 +35,16 @@ public class Position {
         this.y = y;
     }
 
+    public void incrementDirection() {
+        this.direction += 1;
+        this.direction %= 4;
+    }
+
+    public void decrementDirection() {
+        this.direction += 1;
+        this.direction %= 4;
+    }
+
     public void move(double factor) {
         // if direction is neråt  --> y-= factor
         // if direction is uppåt --> y += factor
