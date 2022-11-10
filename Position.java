@@ -8,6 +8,8 @@ enum Direction {
 */
 
 import static java.lang.System.out;
+import static java.lang.Math.*;
+
 
 public class Position {
 // x represents movement in x-plane and y represents movement in the y-plane
@@ -38,12 +40,13 @@ public class Position {
 
     public void incrementDirection() {
         this.direction += 1;
-        this.direction %= 4;
+        this.direction = Math.floorMod(this.direction, 4);
     }
 
     public void decrementDirection() {
         this.direction -= 1;
-        this.direction %= 4;
+        this.direction = Math.floorMod(this.direction, 4);
+        // stupid
     }
 
     public void move(double factor) {
