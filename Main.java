@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Car volvo = new Volvo240();
         volvo.startEngine();
-        out.println(volvo.getCurrentSpeed());
+        volvo.turnLeft();
         volvo.move();
         Position pos = volvo.getPosition();
         out.println(pos.getX());

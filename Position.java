@@ -42,7 +42,7 @@ public class Position {
     }
 
     public void decrementDirection() {
-        this.direction += 1;
+        this.direction -= 1;
         this.direction %= 4;
     }
 
