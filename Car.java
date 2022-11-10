@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public abstract class Car implements Movable {
     
     private int nrDoors; // Number of doors on the car
