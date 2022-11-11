@@ -16,16 +16,15 @@ public abstract class Car implements Movable {
         this.color = color;
         this.modelName = modelName;
         this.position = new Position(0, 0);
-        //stopEngine();
     }
 
     abstract public double speedFactor();
 
-    public void incrementSpeed(double amount){
+    private void incrementSpeed(double amount){
 	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
 
-    public void decrementSpeed(double amount) {
+    private void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
 
@@ -45,7 +44,7 @@ public abstract class Car implements Movable {
     }
 
     public Position getPosition() {
-        return this.position;
+        return position;
     }
 
     public void setColor(Color clr) {
@@ -61,21 +60,15 @@ public abstract class Car implements Movable {
     }
 
     public void move() {
-        this.position.move(this.currentSpeed);
+        position.move(this.currentSpeed);
     }
 
     public void turnLeft() {
-        this.position.decrementDirection();
-        //this.position.direction -= 1;
-        //this.position.direction %= 4;
-        //.position.setXNegagtive();
+        position.decrementDirection();
     }
 
     public void turnRight() {
-        this.position.incrementDirection();
-        //this.position.direction += 1;
-        //this.position.direction %= 4;
-        //this.position.setXPositive();
+        position.incrementDirection();
     }
     
     // TODO fix this method according to lab pm
