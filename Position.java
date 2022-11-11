@@ -1,25 +1,11 @@
-/*
-enum Direction {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-}
-*/
-
-import static java.lang.System.out;
-import static java.lang.Math.*;
-
-
 public class Position {
-// x represents movement in x-plane and y represents movement in the y-plane
     private int x, y;
-    private int direction;
+    private Direction direction;
 
     Position(int x, int y) {
         this.x = x;
         this.y = y;
-        this.direction = 0;
+        this.direction = Direction.NORTH;
     }
 
     public int getX() {
@@ -30,6 +16,10 @@ public class Position {
         return this.y;
     }
 
+    public Direction getDirection() {
+        return this.direction;
+    }
+
     public void setX(int x) {
 	    this.x = x;
     }
@@ -38,67 +28,32 @@ public class Position {
         this.y = y;
     }
 
+    public void setDirection(Direction d) {
+        this.direction = d;
+    }
+
     public void incrementDirection() {
-        this.direction += 1;
-        this.direction = Math.floorMod(this.direction, 4);
+        this.direction = this.direction.increment();
     }
 
     public void decrementDirection() {
-        this.direction -= 1;
-        this.direction = Math.floorMod(this.direction, 4);
-        // stupid
+        this.direction = this.direction.decrement();
     }
 
     public void move(double factor) {
-        // if direction is neråt  --> y-= factor
-        // if direction is uppåt --> y += factor
-        // if direction is höger --> x += factor
-        // if direction is vänster --> x -= factor
-
-        // turnRight --> this.direction = Direction.RIGHT
-        // turnLeft --> this.direction = Direction.LEFT
-        // Should we %= 4 here?
         switch (this.direction) {
-            case 0:
+            case NORTH:
                 this.y += factor;
                 break;
-            case 1:
+            case EAST:
                 x += factor;
                 break;
-            case 2:
+            case SOUTH:
                 y -= factor;
                 break;
-            case 3:
+            case WEST:
                 x -= factor;
                 break;
         }
-        /*
-        if (y < 0){
-          this.y -= factor;
-          this.x -= factor
-
-        }
-        else if(y => 0){
-            this.y += factor;
-            this.x += factor;
-        }
-        this.x += factor;
-        this.y += factor;
-        */
-    }
-    
-    public void setXNegagtive() {
-        // if X is positive, negate it
-        if (this.x > 0) {
-            this.x *=  -1;
-        }
-    }
-    
-    public void setXPositive() {
-        // if X is negative, negate it
-        if (this.x < 0) {
-            this.x = -this.x;
-        }
-        this.x += 0;
     }
 }
