@@ -7,12 +7,14 @@ public enum Direction {
     WEST;
 
     public Direction increment() {
-        int ordinal = Math.floorMod(this.ordinal() + 1, 4);
+        int length = Direction.values().length;
+        int ordinal = Math.floorMod(this.ordinal() + 1, length);
         return Direction.values()[ordinal];
     }
 
     public Direction decrement() {
-        int ordinal = Math.floorMod(this.ordinal() - 1, 4);
+        int length = Direction.values().length;
+        int ordinal = Math.floorMod(this.ordinal() - 1, length);
         return Direction.values()[ordinal];
     }
 }

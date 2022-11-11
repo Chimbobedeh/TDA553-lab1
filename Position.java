@@ -43,7 +43,7 @@ public class Position {
     public void move(double factor) {
         switch (this.direction) {
             case NORTH:
-                this.y += factor;
+                y += factor;
                 break;
             case EAST:
                 x += factor;
