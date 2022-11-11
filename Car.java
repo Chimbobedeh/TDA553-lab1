@@ -47,6 +47,10 @@ public abstract class Car implements Movable {
         return position;
     }
 
+    public Direction getDirection() {
+        return position.getDirection();
+    }
+
     public void setColor(Color clr) {
 	    color = clr;
     }
@@ -71,13 +75,16 @@ public abstract class Car implements Movable {
         position.incrementDirection();
     }
     
-    // TODO fix this method according to lab pm
     public void gas(double amount) {
-        incrementSpeed(amount);
+        if (0.0 <= amount && amount <= 1.0) {
+            incrementSpeed(amount);
+        }
     }
-
-    // TODO fix this method according to lab pm
+    
     public void brake(double amount) {
-        decrementSpeed(amount);
+        if (0.0 <= amount && amount <= 1.0) {
+            decrementSpeed(amount);
+
+        }
     }
 }
