@@ -45,12 +45,10 @@ public class ARSetTest {
 
   @Test
   public void set_should_have_no_duplicates() {
-    // Operation related to add;
     ARSet elems = new ARSet();
     elems.add(1);
     elems.add(1);
     assertTrue(elems.contains(1) && elems.size() == 1);
-    // ArSet expected = new
   }
 
   @Test
@@ -79,7 +77,7 @@ public class ARSetTest {
   }
 
   @Test
-  public void subsetidkbror() {
+  public void set_should_compute_subset() {
     ARSet set1 = new ARSet();
     ARSet set2 = new ARSet();
     ARSet set3 = new ARSet();
@@ -90,9 +88,30 @@ public class ARSetTest {
     assertTrue(set2.isSubset(set1) && !set2.isSubset(set3));
   }
 
+  @Test
   public void is_the_set_right_size() {
+    ARSet set = new ARSet();
+    set.add(1);
+
+    assertEquals(1, set.size());
+  }
+
+  @Test
+  public void does_set_contain() {
+    ARSet set = new ARSet();
+    int i = 1;
+    set.add(i);
     
+    assertTrue(set.contains(i));
+  }
 
-
+  @Test
+  public void override_equals_method() {
+    ARSet set1 = new ARSet();
+    ARSet set2 = new ARSet();
+    
+    set1.add(new Integer[]{1, 2, 3, 4, 5});
+    set2.add(new Integer[]{1, 2, 3, 4, 5});
+    assertEquals(set1, set2);
   }
 }
