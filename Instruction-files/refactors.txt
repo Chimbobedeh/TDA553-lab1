@@ -1,0 +1,8 @@
+Vehicle
+    -- Car
+    -- HeavyTruck (Car with Platform)
+    -- Vehicle that transports other vehicles
+    
+Platform
+    -- Ramp // Angletilted Up-Down
+    -- Flatbed // Vertically Up-Down
