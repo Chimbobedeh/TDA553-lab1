@@ -22,6 +22,11 @@ public class Position {
         return y;
     }
 
+    public double distanceTo(Position other) {
+        double distance = Math.abs(x - other.getX()) + Math.abs(y - other.getY());
+        return distance;
+    }
+
     public Direction getDirection() {
         return direction;
     }
