@@ -51,6 +51,10 @@ public abstract class Car implements Movable {
         return position;
     }
 
+    public double distanceTo(Car otherCar) {
+        return position.distanceTo(otherCar.getPosition());
+    }
+
     public Direction getDirection() {
         return position.getDirection();
     }
@@ -60,7 +64,7 @@ public abstract class Car implements Movable {
     }
 
     public void startEngine() {
-	    currentSpeed = 1;
+        currentSpeed = 1;
     }
 
     public void stopEngine() {
