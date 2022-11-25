@@ -5,6 +5,7 @@ public class CarTransporter extends Truck implements CarStorage {
     // mby duplicering TODO
     private final int maximumCapacityOfCars = 5;
     private ArrayList<Car> loadedCars = new ArrayList<Car>();
+    
 
     public CarTransporter() {
         super(2, 125, 0, Color.red, "CarTransporter", new BinaryPlatform());
