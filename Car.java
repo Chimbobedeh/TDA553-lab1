@@ -1,15 +1,15 @@
 import java.awt.*;
 
 public abstract class Car implements Movable {
-    
-    private int nrDoors; // Number of doors on the car
+
+    private final int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
-    private String modelName; // The car model name
+    private final String modelName; // The car model name
     private Position position;
 
-    public Car (int nrDoors, double enginePower, double currentSpeed, Color color, String modelName) {
+    public Car(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -18,10 +18,10 @@ public abstract class Car implements Movable {
         this.position = new Position(0, 0);
     }
 
-    abstract public double speedFactor();
+    abstract protected double speedFactor();
 
-    private void incrementSpeed(double amount){
-	    currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
+    private void incrementSpeed(double amount) {
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
 
     private void decrementSpeed(double amount) {
@@ -31,6 +31,7 @@ public abstract class Car implements Movable {
     public int getNrDoors() {
         return nrDoors;
     }
+
     public double getEnginePower() {
         return enginePower;
     }
@@ -60,15 +61,15 @@ public abstract class Car implements Movable {
     }
 
     public void setColor(Color clr) {
-	    color = clr;
+        color = clr;
     }
 
     public void startEngine() {
-        currentSpeed = 1;
+        currentSpeed = 0.1;
     }
 
     public void stopEngine() {
-	    currentSpeed = 0;
+        currentSpeed = 0;
     }
 
     public void move() {
@@ -82,13 +83,13 @@ public abstract class Car implements Movable {
     public void turnRight() {
         position.incrementDirection();
     }
-    
+
     public void gas(double amount) {
         if (0.0 <= amount && amount <= 1.0) {
             incrementSpeed(amount);
         }
     }
-    
+
     public void brake(double amount) {
         if (0.0 <= amount && amount <= 1.0) {
             decrementSpeed(amount);

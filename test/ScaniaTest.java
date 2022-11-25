@@ -2,24 +2,29 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.*;
-import java.awt.*;
 
 public class ScaniaTest {
     private Scania truck;
+    private CarTransporter truck2;
+    private Saab95 saab;
 
     @Before
     public void setup() {
         truck = new Scania();
         truck.stopEngine();
-    }
+        truck2 = new CarTransporter();
+        truck2.stopEngine();
+        saab = new Saab95();
 
+        saab.stopEngine();
+
+    }
 
     @After
     public void after_test() {
         truck.stopEngine();
         truck.lowerRamp();
     }
-
 
     // Test methods to lower/raise the Platform.
     // The angle of the platform can not be lower than 0o or higher than 70o
@@ -28,20 +33,20 @@ public class ScaniaTest {
     // The truck must not be able to drive if the platform is raised.
 
     @Test
-    public void is_ramp_raised(){ //Is the ramp-angle not 0
+    public void is_ramp_raised() { // Is the ramp-angle not 0
         truck.raiseRamp();
         assertTrue(!truck.isRampDown());
     }
 
     @Test
-    public void is_ramp_down(){ //Is the ramp-angle exactly 0
+    public void is_ramp_down() { // Is the ramp-angle exactly 0
         truck.raiseRamp();
         truck.lowerRamp();
         assertTrue(truck.isRampDown());
     }
 
     @Test
-    public void angle_not_lower_than_zero(){ //Is the ramp-angle exactly 0
+    public void angle_not_lower_than_zero() { // Is the ramp-angle exactly 0
         truck.lowerRamp();
         assertEquals(0.0, truck.getPlatformAngle(), 0);
     }
@@ -53,19 +58,34 @@ public class ScaniaTest {
         }
         assertEquals(70.0, truck.getPlatformAngle(), 0);
     }
-    
+
     @Test
-    public void cannot_move_with_platform_raised(){ //Is the ramp-angle exactly 0
+    public void cannot_move_with_platform_raised() { // Is the ramp-angle exactly 0
         truck.raiseRamp();
         truck.startEngine();
         truck.move();
-        assertEquals(truck.getPosition(), new Position(0,0));
+        assertEquals(truck.getPosition(), new Position(0, 0));
     }
 
     @Test
-     public void cannot_raise_ramp_with_truck_having_speed(){ //Is the ramp-angle exactly 0
+    public void cannot_raise_ramp_with_truck_having_speed() { // Is the ramp-angle exactly 0
         truck.startEngine();
         truck.raiseRamp();
-        assertEquals(0.0, truck.getPlatformAngle(), 0);
+        assertTrue(truck.isRampDown());
+        // assertEquals(0.0, truck.raiseRamp(), 0);
     }
+
+    @Test
+    public void is_ramp_raised_2() { // Is the ramp-angle not 0
+        truck2.raiseRamp();
+        assertTrue(!truck2.isRampDown());
+    }
+
+    @Test
+    public void is_ramp_down_2() { // Is the ramp-angle exactly 0
+        truck2.raiseRamp();
+        truck2.lowerRamp();
+        assertTrue(truck2.isRampDown());
+    }
+
 }

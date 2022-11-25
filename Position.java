@@ -14,6 +14,10 @@ public class Position {
         this.direction = direction;
     }
 
+    public String toString() {
+        return String.format("%s, %s", getX(), getY());
+    }
+
     public int getX() {
         return x;
     }
@@ -32,7 +36,7 @@ public class Position {
     }
 
     public void setX(int newX) {
-	    x = newX;
+        x = newX;
     }
 
     public void setY(int newY) {
@@ -95,5 +99,5 @@ public class Position {
             return false;
         return true;
     }
-    
+
 }

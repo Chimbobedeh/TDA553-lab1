@@ -1,6 +1,5 @@
 import java.awt.*;
 
-
 /*
 
 Scania should be incorporated into the inheritance hierarchy from Lab 1, but it has additional functionality: 
@@ -15,52 +14,14 @@ The platform must not be raised if the truck is in motion; and the truck must no
 Add these features to Scania.java. Create a test class for Scania with at least one JUnit test.
 
 */
-// Extend vechicle and Truck
-public class Scania extends Car {
-    private ProgressivePlatform platform;
-    
+public class Scania extends Truck {
     public Scania() {
-        super(2, 125, 0, Color.blue, "Scania");
-        platform = new ProgressivePlatform();
+        super(2, 125, 0, Color.blue, "Scania", new ProgressivePlatform());
     }
-
-    public boolean isRampDown() {
-        return platform.getAngle() == 0.0;
-    }
-    //MAYBE MAYBE
-    /*
-    public void closeRamp() {
-        lowerRamp(platform.getAngle());
-    }
-    */
 
     public double getPlatformAngle() {
+        // Not very good looking
+        ProgressivePlatform platform = (ProgressivePlatform) getPlatform();
         return platform.getAngle();
-    }
-
-    public void raiseRamp() {
-        // Om, och endast om bilen är stilla (dvs speed = 0): raise
-        if (this.getCurrentSpeed() == 0) {
-            platform.raise();
-        }
-    }
-
-    public void lowerRamp() {
-        // Om, och endast om bilen är stilla (dvs speed = 0): lower
-        if (this.getCurrentSpeed() == 0) {
-            platform.lower();    
-        }
-    }
-    
-    @Override
-    //Breaks mr N's princple
-    public void move() {
-        if (isRampDown()) {
-            super.move();
-        }
-    }
-    
-    public double speedFactor() {
-        return this.getEnginePower() * 0.01;
     }
 }
