@@ -4,14 +4,14 @@ import org.junit.Test;
 import org.junit.*;
 import java.awt.*;
 
-public class CarTest {
+public class VolvoTest {
     private Volvo240 volvo;
-    private Saab95 saab;
+   
 
     @Before
     public void setup() {
         volvo = new Volvo240();
-        saab = new Saab95();
+        
     }
 
     @After
@@ -24,12 +24,7 @@ public class CarTest {
         assertEquals(volvo.getModelName(), "Volvo240");
     }
 
-    @Test
-    public void is_saab_name_set() {
-        assertEquals(saab.getModelName(), "Saab95");
-    }
-
-    @Test
+        @Test
     public void is_Nr_Doors_set() {
         assertEquals(volvo.getNrDoors(), 4);
     }
@@ -73,7 +68,7 @@ public class CarTest {
     public void gas_not_work_outside_interval() {
         volvo.startEngine();
         volvo.gas(5.0);
-        assertEquals(volvo.getCurrentSpeed(), 1.0, 0.0);
+        assertEquals(0.1, volvo.getCurrentSpeed(), 0.0);
     }
 
     @Test
@@ -119,60 +114,31 @@ public class CarTest {
         volvo.startEngine();
         volvo.turnRight();
         volvo.move();
-        assertEquals(volvo.getPosition(), new Position(1, 0, Direction.EAST));
+        assertEquals(volvo.getPosition(), new Position(0.1, 0, Direction.EAST));
         volvo.turnRight();
         volvo.move();
-        assertEquals(volvo.getPosition(), new Position(1, -1, Direction.SOUTH));
+        assertEquals(volvo.getPosition(), new Position(0.1, -0.1, Direction.SOUTH));
         volvo.turnRight();
         volvo.move();
-        assertEquals(volvo.getPosition(), new Position(0, -1, Direction.WEST));
+        assertEquals(volvo.getPosition(), new Position(0, -0.1, Direction.WEST));
         volvo.turnRight();
         volvo.move();
         assertEquals(volvo.getPosition(), new Position(0, 0, Direction.NORTH));
     }
 
-    @Test
-    public void is_turbo_on_for_saab() {
-        saab.setTurboOn();
-        assertTrue(saab.getTurbo());
-    }
-
-    @Test
-    public void is_turbo_off_for_saab() {
-        saab.setTurboOff();
-        assertTrue(!saab.getTurbo());
-    }
-
-    @Test
-    public void does_volvo_have_trimfactor() {
-        assertEquals(volvo.getTrimFactor(), 1.25, 0.0);
-    }
-
-    @Test
-    public void is_speedfactor_for_volvo_correct() {
-        double expected = volvo.getEnginePower() * 0.01 * 1.25;
-        assertEquals(expected, volvo.speedFactor(), 0.0);
-    }
-
-    @Test
-    public void is_speedfactor_for_saab_correct() {
-        saab.setTurboOn();
-        double expected = saab.getEnginePower() * 0.01 * 1.3;
-        assertEquals(expected, saab.speedFactor(), 0.0);
-    }
 
     @Test
     public void brake_does_not_increase_speed() {
         volvo.startEngine();
         volvo.brake(-1);
-        assertEquals(volvo.getCurrentSpeed(), 1.0, 0.0);
+        assertEquals(0.1, volvo.getCurrentSpeed(), 0.0);
     }
 
     @Test
     public void gas_does_not_decrease_speed() {
         volvo.startEngine();
         volvo.gas(-1);
-        assertEquals(volvo.getCurrentSpeed(), 1.0, 0.0);
+        assertEquals(0.1, volvo.getCurrentSpeed(), 0.0);
     }
 
     @Test

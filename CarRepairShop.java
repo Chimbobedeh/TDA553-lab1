@@ -9,16 +9,16 @@ public class CarRepairShop implements CarStorage {
     public CarRepairShop() {
     }
 
-    // Create a representation of a car repair shop. The following aspects must be
-    // addressed:
-
-    // NOTE: This shares alot of functionality with CarTransporter.
-
-    // A workshop must be able to receive ("load"?) a number of cars, up to a
-    // maximum number that can vary between different workshops.
-    // Cars can only be loaded if they are reasonably close to the workshop.
     // When a car is unloaded, it should then end up reasonably close to the
     // workshop.
+
+    public ArrayList<Car> getLoadedCars() {
+        return loadedCars;
+    }
+    
+    public boolean isLoaded(Car car) {
+        return loadedCars.contains(car);
+    }
 
     public boolean isCarWithinRange(Car car) {
         return position.distanceTo(car.getPosition()) <= 2;

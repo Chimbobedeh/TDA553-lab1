@@ -8,18 +8,21 @@ public class CarTransporter extends Truck implements CarStorage {
 
     public CarTransporter() {
         super(2, 125, 0, Color.red, "CarTransporter", new BinaryPlatform());
+            
+    }
+
+    public ArrayList<Car> getLoadedCars() {
+        return loadedCars;
     }
 
     /*
-     * The car transport ramp has only two positions, up or down. /
-     * The ramp can only be down if the car transport is stationary. /
-     * If the ramp is down, the car transport must not move. /
-     * If the car transport is moving, the ramp must not be lowered. /
-     * Cars can only be loaded if the ramp is down, and they are reasonably close to
-     * the car transport.
      * Cars can only be unloaded if the ramp is down. They should then end up
      * reasonably close to the car transport.
      */
+
+    public boolean isLoaded(Car car) {
+        return loadedCars.contains(car);
+    }
 
     public boolean isCarWithinRange(Car car) {
         return this.distanceTo(car) <= 2;
@@ -34,7 +37,7 @@ public class CarTransporter extends Truck implements CarStorage {
     public void unloadCar(Car car) {
         if (!isRampDown()
                 && loadedCars.size() > 0
-                && loadedCars.contains(car)
+                && isLoaded(car)
                 && loadedCars.indexOf(car) == loadedCars.size() - 1) {
             loadedCars.remove(car);
             // TODO: Move the other car?

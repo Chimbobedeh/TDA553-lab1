@@ -15,7 +15,7 @@ public abstract class Car implements Movable {
         this.currentSpeed = currentSpeed;
         this.color = color;
         this.modelName = modelName;
-        this.position = new Position(0, 0);
+        this.position = new Position(0.0, 0.0);
     }
 
     abstract protected double speedFactor();
