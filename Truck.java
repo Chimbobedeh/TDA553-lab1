@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Truck extends Car {
+public class Truck extends Vehicle {
     private Platform platform;
 
     public Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName,

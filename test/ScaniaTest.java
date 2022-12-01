@@ -64,7 +64,7 @@ public class ScaniaTest {
         truck.raiseRamp();
         truck.startEngine();
         truck.move();
-        assertEquals(truck.getPosition(), new Position(0, 0));
+        assertEquals(truck.getPosition(), new Position(0.0, 0.0));
     }
 
     @Test
