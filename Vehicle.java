@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Vehicle implements Movable {
+public abstract class Vehicle implements IMovable {
     private final int nrDoors;
     private double enginePower;
     private double currentSpeed;
@@ -18,7 +18,6 @@ public abstract class Vehicle implements Movable {
         this.position = new Position(0.0, 0.0);
     }
 
-   
     abstract protected double speedFactor();
 
     private void incrementSpeed(double amount) {
@@ -51,6 +50,10 @@ public abstract class Vehicle implements Movable {
 
     public Position getPosition() {
         return position;
+    }
+
+    public void setPosition(Position pos) {
+        position = pos;
     }
 
     public double distanceTo(Car otherCar) {
@@ -88,15 +91,17 @@ public abstract class Vehicle implements Movable {
     public void gas(double amount) {
         if (0.0 <= amount && amount <= 1.0) {
             incrementSpeed(amount);
+        } else {
+            throw new IllegalArgumentException("Gas amount out of range.");
         }
     }
 
     public void brake(double amount) {
         if (0.0 <= amount && amount <= 1.0) {
             decrementSpeed(amount);
-
+        } else {
+            throw new IllegalArgumentException("Brake amount out of range.");
         }
     }
-
 }
 

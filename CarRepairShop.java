@@ -1,19 +1,19 @@
 import java.util.*;
 
-public class CarRepairShop implements CarStorage {
+public class CarRepairShop implements ICarStorage {
     // mby duplicering TODO
-    private Position position;
+    private Position position = new Position(0.0, 0.0);
     private final int maximumCapacityOfCars = 50;
     private ArrayList<Car> loadedCars = new ArrayList<Car>();
 
-    public CarRepairShop() {
-    }
-
-    // When a car is unloaded, it should then end up reasonably close to the
-    // workshop.
+    public CarRepairShop() {}
 
     public ArrayList<Car> getLoadedCars() {
         return loadedCars;
+    }
+
+    public Position getPosition() {
+        return position;
     }
     
     public boolean isLoaded(Car car) {
@@ -25,7 +25,7 @@ public class CarRepairShop implements CarStorage {
     }
 
     public void loadCar(Car car) {
-        if (loadedCars.size() < maximumCapacityOfCars) {
+        if (loadedCars.size() < maximumCapacityOfCars && isCarWithinRange(car)) {
             loadedCars.add(car);
         }
     }
@@ -33,7 +33,10 @@ public class CarRepairShop implements CarStorage {
     public void unloadCar(Car car) {
         if (loadedCars.size() > 0 && loadedCars.contains(car)) {
             loadedCars.remove(car);
-            // TODO: Move the other car?
+            Position newPosition = new Position(
+                position.getX(), position.getY() - 1.0
+            );
+            car.setPosition(newPosition);
         }
     }
 }

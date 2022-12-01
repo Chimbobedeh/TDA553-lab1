@@ -1,15 +1,15 @@
 import java.awt.*;
 
 public class Truck extends Vehicle {
-    private Platform platform;
+    private IPlatform platform;
 
     public Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName,
-            Platform platform) {
+            IPlatform platform) {
         super(nrDoors, enginePower, currentSpeed, color, modelName);
         this.platform = platform;
     }
 
-    public Platform getPlatform() {
+    public IPlatform getPlatform() {
         return platform;
     }
 

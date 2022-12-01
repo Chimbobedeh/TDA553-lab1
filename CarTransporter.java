@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.*;
 
-public class CarTransporter extends Truck implements CarStorage {
+public class CarTransporter extends Truck implements ICarStorage {
     // mby duplicering TODO
     private final int maximumCapacityOfCars = 5;
     private ArrayList<Car> loadedCars = new ArrayList<Car>();
@@ -30,7 +30,10 @@ public class CarTransporter extends Truck implements CarStorage {
     }
 
     public void loadCar(Car car) {
-        if (!isRampDown() && loadedCars.size() < maximumCapacityOfCars) {
+        if (!isRampDown() 
+            && loadedCars.size() < maximumCapacityOfCars
+            && isCarWithinRange(car)
+        ) {
             loadedCars.add(car);
         }
     }
@@ -41,7 +44,21 @@ public class CarTransporter extends Truck implements CarStorage {
                 && isLoaded(car)
                 && loadedCars.indexOf(car) == loadedCars.size() - 1) {
             loadedCars.remove(car);
-            // TODO: Move the other car?
+            Position currentPos = getPosition();
+            Position newPosition = new Position(
+                currentPos.getX(), currentPos.getY() - 1.0
+            );
+            car.setPosition(newPosition);
         }
     }
+
+    /*
+    @Override
+    public void move() {
+        super.move();
+        for (Car car : loadedCars) {
+            car.move(this.currentSpeed);
+        }
+    }
+    */
 }

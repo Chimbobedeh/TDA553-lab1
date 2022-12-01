@@ -1,5 +1,7 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThrows;
+
 import org.junit.Test;
 import org.junit.*;
 import java.awt.*;
@@ -67,15 +69,17 @@ public class VolvoTest {
     @Test
     public void gas_not_work_outside_interval() {
         volvo.startEngine();
-        volvo.gas(5.0);
-        assertEquals(0.1, volvo.getCurrentSpeed(), 0.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            volvo.gas(5.0);
+        });
     }
 
     @Test
     public void break_not_work_outside_interval() {
         volvo.startEngine();
-        volvo.brake(5.0);
-        assertEquals(volvo.getCurrentSpeed(), 0.1, 0.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            volvo.brake(5.0);
+        });
     }
 
     @Test
@@ -130,15 +134,18 @@ public class VolvoTest {
     @Test
     public void brake_does_not_increase_speed() {
         volvo.startEngine();
-        volvo.brake(-1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            volvo.brake(-1);
+        });
         assertEquals(0.1, volvo.getCurrentSpeed(), 0.0);
     }
 
     @Test
     public void gas_does_not_decrease_speed() {
         volvo.startEngine();
-        volvo.gas(-1);
-        assertEquals(0.1, volvo.getCurrentSpeed(), 0.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            volvo.gas(-1);
+        });
     }
 
     @Test

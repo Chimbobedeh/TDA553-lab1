@@ -1,5 +1,7 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThrows;
+
 import org.junit.Test;
 import org.junit.*;
 import java.awt.*;
@@ -67,15 +69,17 @@ public class Saab1Test {
     @Test
     public void gas_not_work_outside_interval() {
         saab.startEngine();
-        saab.gas(5.0);
-        assertEquals(0.1, saab.getCurrentSpeed() , 0.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            saab.gas(5.0);
+        });
     }
 
     @Test
     public void break_not_work_outside_interval() {
         saab.startEngine();
-        saab.brake(5.0);
-        assertEquals(saab.getCurrentSpeed(), 0.1, 0.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            saab.brake(5.0);
+        });
     }
 
     @Test
@@ -148,15 +152,17 @@ public class Saab1Test {
     @Test
     public void brake_does_not_increase_speed() {
         saab.startEngine();
-        saab.brake(-1);
-        assertEquals(0.1, saab.getCurrentSpeed(), 0.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            saab.brake(-1);
+        });
     }
 
     @Test
     public void gas_does_not_decrease_speed() {
         saab.startEngine();
-        saab.gas(-1);
-        assertEquals(0.1, saab.getCurrentSpeed(), 0.0);
+        assertThrows(IllegalArgumentException.class, () -> {
+            saab.gas(-1);
+        });
     }
 
     @Test

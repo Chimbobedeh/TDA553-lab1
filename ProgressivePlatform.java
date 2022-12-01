@@ -1,4 +1,4 @@
-public class ProgressivePlatform implements Platform {
+public class ProgressivePlatform implements IPlatform {
     private double angle = 0;
 
     public ProgressivePlatform() {}

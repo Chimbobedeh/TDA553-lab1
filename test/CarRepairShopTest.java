@@ -83,4 +83,14 @@ public class CarRepairShopTest {
         repairShop.loadCar(saab);
         assertTrue(repairShop.isLoaded(saab));
     }
+
+    @Test
+    public void test_unload_cars_position() {
+        saab.startEngine();
+        saab.gas(0.9);
+        saab.move();
+        repairShop.loadCar(saab);
+        repairShop.unloadCar(saab);
+        assertEquals(repairShop.getPosition().distanceTo(saab.getPosition()), 2.0,1.0);
+    }
 }

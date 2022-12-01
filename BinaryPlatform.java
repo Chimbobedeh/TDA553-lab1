@@ -1,4 +1,4 @@
-public class BinaryPlatform implements Platform {
+public class BinaryPlatform implements IPlatform {
     private boolean raised;
 
     public BinaryPlatform() {
