@@ -6,20 +6,13 @@ public class CarTransporter extends Truck implements ICarStorage {
     private final int maximumCapacityOfCars = 5;
     private ArrayList<Car> loadedCars = new ArrayList<Car>();
     
-
     public CarTransporter() {
         super(2, 125, 0, Color.red, "CarTransporter", new BinaryPlatform());
-            
     }
 
     public ArrayList<Car> getLoadedCars() {
         return loadedCars;
     }
-
-    /*
-     * Cars can only be unloaded if the ramp is down. They should then end up
-     * reasonably close to the car transport.
-     */
 
     public boolean isLoaded(Car car) {
         return loadedCars.contains(car);

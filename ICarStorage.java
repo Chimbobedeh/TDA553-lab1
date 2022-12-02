@@ -1,5 +1,6 @@
 
 interface ICarStorage {
+
     boolean isCarWithinRange(Car car);
 
     void loadCar(Car car);
