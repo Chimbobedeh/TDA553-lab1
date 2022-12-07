@@ -10,11 +10,11 @@ public class Truck extends Vehicle {
     }
 
     public IPlatform getPlatform() {
-        return platform;
+        return platform.clone();
     }
 
-    public boolean isRampDown() {
-        return !platform.isRaised();
+    public boolean isRampActive() {
+        return platform.isActive();
     }
 
     public void raiseRamp() {
@@ -31,7 +31,7 @@ public class Truck extends Vehicle {
 
     @Override
     public void move() {
-        if (isRampDown()) {
+        if (!isRampActive()) {
             super.move();
         }
     }

@@ -5,6 +5,14 @@ public class BinaryPlatform implements IPlatform {
         raised = true;
     }
 
+    public BinaryPlatform(boolean raised) {
+        this.raised = raised;
+    }
+
+    public IPlatform clone() {
+        return new BinaryPlatform(raised);
+    }
+
     public void raise() {
         raised = true;
     }
@@ -13,7 +21,7 @@ public class BinaryPlatform implements IPlatform {
         raised = false;
     }
 
-    public boolean isRaised() {
-        return raised;
+    public boolean isActive() {
+        return !raised;
     }
 }

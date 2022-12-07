@@ -3,11 +3,19 @@ public class ProgressivePlatform implements IPlatform {
 
     public ProgressivePlatform() {}
 
+    public ProgressivePlatform(double angle) {
+        this.angle = angle;
+    }
+
+    public IPlatform clone() {
+        return new ProgressivePlatform(angle);
+    }
+
     public double getAngle() {
         return angle;
     }
 
-    public boolean isRaised() {
+    public boolean isActive() {
         return angle != 0;
     }
     

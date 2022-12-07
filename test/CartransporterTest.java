@@ -43,18 +43,18 @@ public class CartransporterTest {
     @Test
     public void is_ramp_raised() { // Is ramp up?
         //transporter.raiseRamp(); Tranporter starts with ramp raised. This line is unecessary. 
-        assertTrue(!transporter.isRampDown());
+        assertTrue(!transporter.isRampActive());
     }
 
     @Test
     public void is_ramp_down() { // Is the ramp down?
         transporter.lowerRamp();
-        assertTrue(transporter.isRampDown());
+        assertTrue(transporter.isRampActive());
     }
 
     @Test
-    public void cannot_move_with_platform_raised() { // Is the ramp-angle exactly 0
-        transporter.raiseRamp();
+    public void cannot_move_with_platform_lowered() { // Is the ramp-angle exactly 0
+        transporter.lowerRamp();
         transporter.startEngine();
         transporter.move();
         assertEquals(transporter.getPosition(), new Position(0.0, 0.0));
@@ -65,7 +65,7 @@ public class CartransporterTest {
         transporter.lowerRamp();
         transporter.startEngine();
         transporter.raiseRamp();
-        assertTrue(transporter.isRampDown());
+        assertTrue(transporter.isRampActive());
     }
 
     @Test
@@ -87,8 +87,9 @@ public class CartransporterTest {
         saab.startEngine();
         saab.gas(1);
         saab.move();
+        transporter.lowerRamp();
         transporter.loadCar(saab);        
-        assertTrue(transporter.getLoadedCars().size() == 1);
+        assertEquals(1,transporter.getLoadedCars().size());
         // && transporter.isLoaded(saab) <--?
 
     }
@@ -97,16 +98,19 @@ public class CartransporterTest {
     public void test_unload_car() {
         // TODO
         saab.startEngine();
-        saab.gas(0.9);
+        saab.gas(1);
         saab.move();
+        saab.stopEngine();
+        transporter.lowerRamp();
         transporter.loadCar(saab);
         transporter.unloadCar(saab);
 
-        assertTrue(transporter.getLoadedCars().size() == 0);
+        assertEquals(0, transporter.getLoadedCars().size());
     }
 
     @Test
     public void storage_cannot_exceed_maximumCapacity() {
+        transporter.lowerRamp();
         transporter.loadCar(saab);
         transporter.loadCar(saab1);
         transporter.loadCar(saab2);
@@ -118,11 +122,13 @@ public class CartransporterTest {
     
     @Test
     public void is_transporter_loaded_with_car() {
+        transporter.lowerRamp();
         transporter.loadCar(saab);
         assertTrue(transporter.isLoaded(saab));
     }
     @Test
     public void can_only_unload_if_last_in_line() {
+        transporter.lowerRamp();
         transporter.loadCar(saab);
         transporter.loadCar(saab1);
         transporter.unloadCar(saab);

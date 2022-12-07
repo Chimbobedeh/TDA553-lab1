@@ -5,15 +5,12 @@ import org.junit.*;
 
 public class ScaniaTest {
     private Scania truck;
-    private CarTransporter truck2;
     private Saab95 saab;
 
     @Before
     public void setup() {
         truck = new Scania();
         truck.stopEngine();
-        truck2 = new CarTransporter();
-        truck2.stopEngine();
         saab = new Saab95();
 
         saab.stopEngine();
@@ -35,14 +32,14 @@ public class ScaniaTest {
     @Test
     public void is_ramp_raised() { // Is the ramp-angle not 0
         truck.raiseRamp();
-        assertTrue(!truck.isRampDown());
+        assertTrue(truck.isRampActive());
     }
 
     @Test
     public void is_ramp_down() { // Is the ramp-angle exactly 0
         truck.raiseRamp();
         truck.lowerRamp();
-        assertTrue(truck.isRampDown());
+        assertTrue(!truck.isRampActive());
     }
 
     @Test
@@ -68,24 +65,25 @@ public class ScaniaTest {
     }
 
     @Test
+    public void is_ramp_angle_not_zero_after_raise() {
+        truck.raiseRamp();
+        assertTrue(truck.isRampActive());
+    }
+
+    @Test
     public void cannot_raise_ramp_with_truck_having_speed() { // Is the ramp-angle exactly 0
         truck.startEngine();
         truck.raiseRamp();
-        assertTrue(truck.isRampDown());
+        assertTrue(!truck.isRampActive());
         // assertEquals(0.0, truck.raiseRamp(), 0);
     }
 
-    @Test
-    public void is_ramp_raised_2() { // Is the ramp-angle not 0
-        truck2.raiseRamp();
-        assertTrue(!truck2.isRampDown());
-    }
+    
 
     @Test
-    public void is_ramp_down_2() { // Is the ramp-angle exactly 0
-        truck2.raiseRamp();
-        truck2.lowerRamp();
-        assertTrue(truck2.isRampDown());
+    public void can_i_malicious_raise_ramp() {
+        truck.getPlatform().raise();
+        assertEquals(0.0, truck.getPlatformAngle(), 0.0);
     }
-
 }
+

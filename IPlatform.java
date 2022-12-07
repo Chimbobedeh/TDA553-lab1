@@ -1,5 +1,6 @@
 interface IPlatform {
     void raise();
     void lower();
-    boolean isRaised();
+    IPlatform clone();
+    boolean isActive();
 }
