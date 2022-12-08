@@ -18,15 +18,17 @@ public class CarController {
     private final int delay = 50;
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
+    //MODEL STUFF
     private Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
+    //Model
     ArrayList<Vehicle> cars = new ArrayList<>();
 
     //methods:
-
+    // APP
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
@@ -45,6 +47,8 @@ public class CarController {
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
+
+    //MODEL
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             for (Vehicle car : cars) {
@@ -61,8 +65,7 @@ public class CarController {
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Vehicle car : cars
-                ) {
+        for (Vehicle car : cars) {
             car.gas(gas);
         }
     }

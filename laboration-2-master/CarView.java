@@ -17,7 +17,7 @@ public class CarView extends JFrame{
     private static final int X = 800;
     private static final int Y = 800;
 
-    // The controller member
+    // The controller member BUT THIS IS A VIEW
     CarController carC;
 
     DrawPanel drawPanel = new DrawPanel(X, Y-240);
@@ -39,13 +39,13 @@ public class CarView extends JFrame{
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
-    // Constructor
+    // Constructor MODEL STUFF
     public CarView(String framename, CarController cc){
         this.carC = cc;
         initComponents(framename);
     }
 
-    // Sets everything in place and fits everything
+    // Sets everything in place and fits everything FINE
     // TODO: Take a good look and make sure you understand how these methods and components work
     private void initComponents(String title) {
 
@@ -56,7 +56,7 @@ public class CarView extends JFrame{
         this.add(drawPanel);
 
 
-
+        // CONTROLLER STUFF
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -76,7 +76,7 @@ public class CarView extends JFrame{
         this.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
-
+        // CONTROLLER STUFF
         controlPanel.add(gasButton, 0);
         controlPanel.add(turboOnButton, 1);
         controlPanel.add(liftBedButton, 2);
@@ -87,13 +87,13 @@ public class CarView extends JFrame{
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
-
+        // FINE
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
         startButton.setPreferredSize(new Dimension(X/5-15,200));
         this.add(startButton);
 
-
+        //FINE
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
         stopButton.setPreferredSize(new Dimension(X/5-15,200));

@@ -1,0 +1,11 @@
+Application
+- Create an Application class
+    - Move main Method from (31-44)CarController to application
+Controller
+    - Move ALL buttons/button logic from view too controller
+    - moveit Method in (45-51)DrawPanel is a Controller
+Model
+    - line 43 - 46 in CarView
+    - Make TimerListener a independent class which is a model, and View implements it 
+View
+    - Implement Observer pattern(?)
