@@ -36,6 +36,27 @@ public class Truck extends Vehicle {
         }
     }
 
+    @Override
+    public void gas(double amount) {
+        if (!isRampActive()) {
+            super.gas(amount);
+        }
+    }
+
+    @Override
+    public void brake(double amount) {
+        if (!isRampActive()) {
+            super.brake(amount);
+        }
+    }
+
+    @Override
+    public void startEngine() {
+        if (!isRampActive()) {
+            super.startEngine();
+        }
+    }
+
     public double speedFactor() {
         return this.getEnginePower() * 0.01;
     }
