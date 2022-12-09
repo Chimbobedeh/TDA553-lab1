@@ -1,17 +1,21 @@
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 public class DrawableVehicleFactory {
-    public static DrawableVehicle createSaab(Vehicle car) {
-        BufferedImage volvoImage = loadImage("pics/Saab94.jpg");
-        return new DrawableVehicle(volvoImage, car);
+    public static DrawableVehicle createSaab(Vehicle vehicle) {
+        BufferedImage saabImage = loadImage("pics/Saab94.jpg");
+        return new DrawableVehicle(saabImage, vehicle);
     }
 
-    public static DrawableVehicle createVolvo(Vehicle car) {
+    public static DrawableVehicle createVolvo(Vehicle vehicle) {
         BufferedImage volvoImage = loadImage("pics/Volvo240.jpg");
-        return new DrawableVehicle(volvoImage, car);
+        return new DrawableVehicle(volvoImage, vehicle);
+    }
+
+    public static DrawableVehicle createScania(Vehicle vehicle) {
+        BufferedImage scaniaImage = loadImage("pics/Scania.jpg");
+        return new DrawableVehicle(scaniaImage, vehicle);
     }
 
     private static BufferedImage loadImage(String path) {

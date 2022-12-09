@@ -1,19 +1,17 @@
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
 import org.junit.*;
 import java.awt.*;
 
-public class VehicleTest{
+public class VehicleTest {
     private Volvo240 volvo;
-   
 
     @Before
     public void setup() {
         volvo = new Volvo240();
-        
+
     }
 
     @After
@@ -26,7 +24,7 @@ public class VehicleTest{
         assertEquals(volvo.getModelName(), "Volvo240");
     }
 
-        @Test
+    @Test
     public void is_Nr_Doors_set() {
         assertEquals(volvo.getNrDoors(), 4);
     }
@@ -129,7 +127,6 @@ public class VehicleTest{
         volvo.move();
         assertEquals(volvo.getPosition(), new Position(0, 0, Direction.NORTH));
     }
-
 
     @Test
     public void brake_does_not_increase_speed() {

@@ -1,12 +1,11 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class DrawableVehicle extends JComponent {
-    private BufferedImage image;
+    private Image image;
     private Vehicle vehicle;
 
-    public DrawableVehicle(BufferedImage image, Vehicle vehicle) {
+    public DrawableVehicle(Image image, Vehicle vehicle) {
         this.image = image;
         this.vehicle = vehicle;
     }
@@ -14,5 +13,6 @@ public class DrawableVehicle extends JComponent {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(image, (int) vehicle.getPosition().getX(), (int) vehicle.getPosition().getY(), null);
     }
 }

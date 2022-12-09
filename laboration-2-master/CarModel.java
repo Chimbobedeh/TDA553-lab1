@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class CarModel {
-    private Collection<Vehicle> vehicles;
+    private List<Vehicle> vehicles;
     private Collection<Observer> observers;
 
-    // private boolean direction = true;
-    // private int ticker = 0;
     public CarModel() {
-        vehicles = new ArrayList<>(10);
+        vehicles = new ArrayList<>();
         observers = new ArrayList<>();
     }
 
@@ -16,7 +15,7 @@ public class CarModel {
         vehicles.add(v);
     }
 
-    public Collection<Vehicle> getVehicles() {
+    public List<Vehicle> getVehicles() {
         return vehicles;
     }
 

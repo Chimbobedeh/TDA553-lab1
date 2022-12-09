@@ -1,12 +1,12 @@
 import java.util.*;
 
 public class CarRepairShop implements ICarStorage {
-    // mby duplicering TODO
     private Position position = new Position(0.0, 0.0);
     private final int maximumCapacityOfCars = 50;
     private ArrayList<Car> loadedCars = new ArrayList<Car>();
 
-    public CarRepairShop() {}
+    public CarRepairShop() {
+    }
 
     public ArrayList<Car> getLoadedCars() {
         return loadedCars;
@@ -15,7 +15,7 @@ public class CarRepairShop implements ICarStorage {
     public Position getPosition() {
         return position;
     }
-    
+
     public boolean isLoaded(Car car) {
         return loadedCars.contains(car);
     }
@@ -34,8 +34,7 @@ public class CarRepairShop implements ICarStorage {
         if (loadedCars.size() > 0 && loadedCars.contains(car)) {
             loadedCars.remove(car);
             Position newPosition = new Position(
-                position.getX(), position.getY() - 1.0
-            );
+                    position.getX(), position.getY() - 1.0);
             car.setPosition(newPosition);
         }
     }

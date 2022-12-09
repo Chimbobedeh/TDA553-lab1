@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public abstract class Vehicle implements IMovable {
     private final int nrDoors;
@@ -7,15 +8,18 @@ public abstract class Vehicle implements IMovable {
     private Color color;
     private final String modelName;
     private Position position;
-    //private CarEngine engine;
-    
-    public Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName) {;
+    // private CarEngine engine;
+    private BufferedImage image;
+
+    public Vehicle(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName,
+            String path) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
         this.color = color;
         this.modelName = modelName;
         this.position = new Position(0.0, 0.0);
+        this.image = ImageLoader.loadImage(path);
     }
 
     abstract protected double speedFactor();
@@ -26,6 +30,10 @@ public abstract class Vehicle implements IMovable {
 
     private void decrementSpeed(double amount) {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+    }
+
+    public BufferedImage getImage() {
+        return this.image;
     }
 
     public int getNrDoors() {
@@ -104,4 +112,3 @@ public abstract class Vehicle implements IMovable {
         }
     }
 }
-

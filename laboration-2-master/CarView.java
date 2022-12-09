@@ -21,7 +21,8 @@ public class CarView extends JFrame implements Observer {
     // The controller member
     CarController controller;
     CarModel model;
-    DrawPanel drawPanel = new DrawPanel(X, Y - 240);
+    // Components
+    DrawPanel drawPanel;
     JPanel controlPanel = new JPanel();
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
@@ -39,6 +40,7 @@ public class CarView extends JFrame implements Observer {
     public CarView(String framename, CarModel model, CarController controller) {
         this.model = model;
         this.controller = controller;
+        this.drawPanel = new DrawPanel(X, Y - 240, model);
         initComponents(framename);
     }
 
@@ -93,6 +95,13 @@ public class CarView extends JFrame implements Observer {
             }
         });
 
+        brakeButton.addActionListener(new ActionListener() { // This actionListener is for the gas button only
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.callmodelbrake(gasAmount);
+            }
+        });
+
         this.pack(); // Make the frame pack all it's components by respecting the sizes if possible.
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize(); // Get the computer screen resolution
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2); // Center
@@ -102,15 +111,7 @@ public class CarView extends JFrame implements Observer {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Make sure the frame exits when "x" is pressed
     }
 
-    protected void paintComponent(Graphics g) {
-        for (Vehicle vehicle : model.getVehicles()) {
-            // g.drawImage(vehicle.getImage(), vehicle.getX(), vehicle.getY(), null);
-        }
-    }
-
     public void updateObserver() {
-        // The model has been updated,
-        // we should now repaint
         drawPanel.repaint();
     }
 }

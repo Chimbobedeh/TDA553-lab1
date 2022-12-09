@@ -4,8 +4,8 @@ public class Truck extends Vehicle {
     private IPlatform platform;
 
     public Truck(int nrDoors, double enginePower, double currentSpeed, Color color, String modelName,
-            IPlatform platform) {
-        super(nrDoors, enginePower, currentSpeed, color, modelName);
+            IPlatform platform, String path) {
+        super(nrDoors, enginePower, currentSpeed, color, modelName, path);
         this.platform = platform;
     }
 
