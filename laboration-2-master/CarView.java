@@ -18,7 +18,6 @@ public class CarView extends JFrame implements Observer {
     private static final int X = 800;
     private static final int Y = 800;
 
-    // The controller member
     CarController controller;
     CarModel model;
     // Components
