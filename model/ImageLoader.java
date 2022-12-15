@@ -8,8 +8,9 @@ public class ImageLoader {
         BufferedImage image = null;
         try { // Print an error message in case file is not found with a try/catch block
             image = ImageIO.read(DrawPanel.class.getResourceAsStream(path));
-        } catch (IOException ex) {
+        } catch (IOException |IllegalArgumentException ex) {
             ex.printStackTrace();
+            image = new BufferedImage(100, 60, BufferedImage.TYPE_INT_RGB);
         }
         return image;
     }
