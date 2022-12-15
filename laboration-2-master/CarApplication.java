@@ -1,6 +1,4 @@
-
 public class CarApplication {
-
     public static void main(String[] args) {
         CarModel model = new CarModel();
         CarController controller = new CarController(model);

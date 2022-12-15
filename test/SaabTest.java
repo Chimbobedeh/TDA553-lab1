@@ -1,14 +1,11 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import org.junit.*;
-
 import org.junit.*;
 import java.awt.*;
 
 public class SaabTest {
     private Saab95 saab;
-   
+
     @Before
     public void setup() {
         saab = new Saab95();
@@ -44,7 +41,7 @@ public class SaabTest {
     @Test
     public void does_the_turbo_turn_on() {
         saab.setTurboOn();
-        assertTrue(saab.getTurbo());   
+        assertTrue(saab.getTurbo());
 
     }
 

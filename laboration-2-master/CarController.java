@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -6,25 +7,24 @@ import javax.swing.*;
 * modifying the model state and the updating the view.
  */
 
-public class CarController extends JFrame {
-
+public class CarController extends JPanel {
     private CarModel model;
+    private ControlPanel controlPanel;
+    private JLabel gasLabel = new JLabel("Amount of gas");
+    private SpinnerButton gasSpinner = new SpinnerButton();
 
     public CarController(CarModel model) {
         this.model = model;
-    }
+        this.controlPanel = new ControlPanel(model.getVehicles(), gasSpinner);
 
-    void callmodelgas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (Vehicle vehicle : model.getVehicles()) {
-            vehicle.gas(gas);
-        }
-    }
+        JPanel gasPanel = new JPanel();
+        gasPanel.setLayout(new BorderLayout());
+        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
+        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
-    void callmodelbrake(int amount) {
-        double gas = ((double) amount) / 100;
-        for (Vehicle vehicle : model.getVehicles()) {
-            vehicle.brake(gas);
-        }
+        add(gasPanel);
+        add(controlPanel);
+        add(new StartButton(model.getVehicles()));
+        add(new StopButton(model.getVehicles()));
     }
 }
